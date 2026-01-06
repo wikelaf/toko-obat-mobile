@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -10,44 +10,54 @@ const LoginScreen = ({ navigation }: any) => {
     const { login, isLoading } = useContext(AuthContext);
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>Login Pelanggan</Text>
-                <Text style={styles.subtitle}>Masuk untuk melanjutkan checkout</Text>
-            </View>
+        <KeyboardAvoidingView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+        >
+            <ScrollView
+                contentContainerStyle={styles.container}
+                showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
+            >
+                <View style={styles.header}>
+                    <Text style={styles.title}>Login Pelanggan</Text>
+                    <Text style={styles.subtitle}>Masuk untuk melanjutkan checkout</Text>
+                </View>
 
-            <View style={styles.form}>
-                <Input
-                    label="Email"
-                    value={email}
-                    onChangeText={setEmail}
-                    placeholder="nama@email.com"
-                    keyboardType="email-address"
-                />
-                <Input
-                    label="Password"
-                    value={password}
-                    onChangeText={setPassword}
-                    placeholder="********"
-                    secureTextEntry
-                />
+                <View style={styles.form}>
+                    <Input
+                        label="Email"
+                        value={email}
+                        onChangeText={setEmail}
+                        placeholder="nama@email.com"
+                        keyboardType="email-address"
+                    />
+                    <Input
+                        label="Password"
+                        value={password}
+                        onChangeText={setPassword}
+                        placeholder="********"
+                        secureTextEntry
+                    />
 
-                <Button
-                    title="Masuk"
-                    onPress={() => login(email, password)}
-                    loading={isLoading}
-                />
+                    <Button
+                        title="Masuk"
+                        onPress={() => login(email, password)}
+                        loading={isLoading}
+                    />
 
-                <TouchableOpacity
-                    style={styles.registerLink}
-                    onPress={() => navigation.navigate('Register')}
-                >
-                    <Text style={styles.registerText}>
-                        Belum punya akun? <Text style={styles.registerTextBold}>Daftar</Text>
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+                    <TouchableOpacity
+                        style={styles.registerLink}
+                        onPress={() => navigation.navigate('Register')}
+                    >
+                        <Text style={styles.registerText}>
+                            Belum punya akun? <Text style={styles.registerTextBold}>Daftar</Text>
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
 

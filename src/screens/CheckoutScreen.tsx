@@ -16,8 +16,8 @@ const CheckoutScreen = ({ navigation }: any) => {
 
     const paymentOptions = [
         { id: 'COD', name: 'Bayar di Tempat (COD)', icon: '💵' },
-        { id: 'BANK', name: 'Transfer Bank', icon: '🏦' },
-        { id: 'GOPAY', name: 'GoPay / OVO', icon: '📱' },
+        // { id: 'BANK', name: 'Transfer Bank', icon: '🏦' },
+        // { id: 'GOPAY', name: 'GoPay / OVO', icon: '📱' },
     ];
 
     const shippingFee = 10000;

@@ -104,15 +104,11 @@ const HomeScreen = ({ navigation }: any) => {
                     <Text style={styles.welcomeLabel}>Halo,</Text>
                     <Text style={styles.userName}>{userInfo ? userInfo.nama : 'Pelanggan Setia'}</Text>
                 </View>
-                <View style={styles.pointsContainer}>
-                    <Text style={styles.pointsIcon}>💰</Text>
-                    <Text style={styles.pointsText}>1.250 Poin</Text>
-                </View>
             </View>
 
             {/* Quick Actions / Categories */}
             <View style={styles.categoryGrid}>
-                {categories.map((cat) => (
+                {categories.map((cat) => ( 
                     <TouchableOpacity
                         key={cat.id}
                         style={[

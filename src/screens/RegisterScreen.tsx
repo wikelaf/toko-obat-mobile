@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -27,54 +27,64 @@ const RegisterScreen = ({ navigation }: any) => {
     };
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>Daftar Akun Baru</Text>
-                <Text style={styles.subtitle}>Lengkapi data diri Anda</Text>
-            </View>
+        <KeyboardAvoidingView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+        >
+            <ScrollView
+                contentContainerStyle={styles.container}
+                showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
+            >
+                <View style={styles.header}>
+                    <Text style={styles.title}>Daftar Akun Baru</Text>
+                    <Text style={styles.subtitle}>Lengkapi data diri Anda</Text>
+                </View>
 
-            <View style={styles.form}>
-                <Input
-                    label="Nama Lengkap"
-                    value={nama}
-                    onChangeText={setNama}
-                    placeholder="John Doe"
-                />
-                <Input
-                    label="Email"
-                    value={email}
-                    onChangeText={setEmail}
-                    placeholder="nama@email.com"
-                    keyboardType="email-address"
-                />
-                <Input
-                    label="Password"
-                    value={password}
-                    onChangeText={setPassword}
-                    placeholder="Minimal 6 karakter"
-                    secureTextEntry
-                />
-                <Input
-                    label="Alamat"
-                    value={alamat}
-                    onChangeText={setAlamat}
-                    placeholder="Jl. Contoh No. 123"
-                />
-                <Input
-                    label="Nomor Telepon"
-                    value={telepon}
-                    onChangeText={setTelepon}
-                    placeholder="08123456789"
-                    keyboardType="phone-pad"
-                />
+                <View style={styles.form}>
+                    <Input
+                        label="Nama Lengkap"
+                        value={nama}
+                        onChangeText={setNama}
+                        placeholder="John Doe"
+                    />
+                    <Input
+                        label="Email"
+                        value={email}
+                        onChangeText={setEmail}
+                        placeholder="nama@email.com"
+                        keyboardType="email-address"
+                    />
+                    <Input
+                        label="Password"
+                        value={password}
+                        onChangeText={setPassword}
+                        placeholder="Minimal 6 karakter"
+                        secureTextEntry
+                    />
+                    <Input
+                        label="Alamat"
+                        value={alamat}
+                        onChangeText={setAlamat}
+                        placeholder="Jl. Contoh No. 123"
+                    />
+                    <Input
+                        label="Nomor Telepon"
+                        value={telepon}
+                        onChangeText={setTelepon}
+                        placeholder="08123456789"
+                        keyboardType="phone-pad"
+                    />
 
-                <Button
-                    title="Daftar"
-                    onPress={handleRegister}
-                    loading={isLoading}
-                />
-            </View>
-        </ScrollView>
+                    <Button
+                        title="Daftar"
+                        onPress={handleRegister}
+                        loading={isLoading}
+                    />
+                </View>
+            </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
 

@@ -15,6 +15,8 @@ import CheckoutScreen from '../screens/CheckoutScreen';
 import OrderHistoryScreen from '../screens/OrderHistoryScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import OrderDetailScreen from '../screens/OrderDetailScreen';
+import NewsScreen from '../screens/NewsScreen';
+import HelpCenterScreen from '../screens/HelpCenterScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,6 +50,15 @@ const MainTabs = () => {
                     title: 'Beranda',
                     headerShown: false,
                     tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>🏠</Text>
+                }}
+            />
+            <Tab.Screen
+                name="NewsTab"
+                component={NewsScreen}
+                options={{
+                    title: 'Berita',
+                    headerShown: false,
+                    tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>📰</Text>
                 }}
             />
             <Tab.Screen
@@ -128,6 +139,11 @@ const AppNavigator = () => {
                             name="OrderDetail"
                             component={OrderDetailScreen}
                             options={{ title: 'Detail Pesanan' }}
+                        />
+                        <Stack.Screen
+                            name="HelpCenter"
+                            component={HelpCenterScreen}
+                            options={{ title: 'Pusat Bantuan' }}
                         />
                     </>
                 )}
